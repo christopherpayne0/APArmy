@@ -14,6 +14,11 @@ Meteor.startup(function() {
       label: "Your Name",
       type: "text",
       required: true
+    },{
+      field: "username",
+      label: "Username <span style='color:red;'>*</span>",
+      type: "text",
+      required: true
     }]
   });
 });
