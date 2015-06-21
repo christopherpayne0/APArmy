@@ -191,6 +191,18 @@ Router.map(function() {
     }
   });
 
+  this.route('exampleRouteToShowPassingDataToTemplateFromTheURL', {
+    path: '/posts/:_id',
+    data: function (){
+      _id  = this.params._id;
+      templateData = {
+        _id: _id,
+        title: 'Did you know that...',
+        text: 'If you yelled for 8 years, 7 months and 6 days, you would have produced enough sound energy to heat up one cup of coffee.'
+      };
+      return templateData;
+    }
+  });
   this.route('notFound', {
     path: '*',
     where: 'server',
