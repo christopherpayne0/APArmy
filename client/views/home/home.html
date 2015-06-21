@@ -5,42 +5,47 @@
           <!--The site title is pulled from our seo.js-->
         <h1>{{ siteTitle }}</h1>
 
-        <p class="lead">Collaborative dress for organization events</p>
+        <p class="lead">Real news and information for Patriots.</p>
         <p>
             <!--pathFor asks Iron Router to fill the url in, in case it changes-->
-          <a href="{{pathFor 'dashboard'}}" class="btn btn-lg btn-success">My Projects</a>
+          <a href="{{pathFor 'blog'}}" class="btn btn-lg btn-success">Blog Page</a>
         </p>
       </div>
       <div class="row">
-        <div class="col-lg-4">
-            <!--The fa-users class indicates a font awesome icon-->
-          <h2><i class="fa fa-users"></i> Team Building</h2>
-          <p>
-              Invite your project team to collaborate on your project.
-              They will automatically see your project once they've been invited.
-          </p>
-        </div>
-        <div class="col-lg-4">
-          <h2><i class="fa fa-twitch"></i> Store Conversations</h2>
-          <p>
-            Any comments or remarks made on a specific project will be stored with the project.
-          </p>
-        </div>
-
-      </div>
-      <div class="row">
-        <div class="col-lg-4">
-          <h2><i class="fa fa-upload"></i> Upload Files</h2>
-          <p>
-            Invite your users to Upload Files.
-          </p>
+          <div class="col-lg-4">
+              <!--The fa-users class indicates a font awesome icon-->
+            <h2><i class="fa fa-legal"></i> Petitions</h2>
+            <p>
+                This is where you can find, create and sign petitions.
+            </p>
+          </div>
+          <div class="col-lg-4">
+            <h2><i class="fa fa-university"></i> CO Government Structure</h2>
+            <p>
+              Learn about the structure of the state government and which entities govern what.
+            </p>
+          </div>
 
         </div>
+        <div class="row">
+          <div class="col-lg-4">
+            <h2><i class="fa fa-ban"></i> Wailing Wall of Shame</h2>
+            <p>
+              Wrongdoing by government officials
+            </p>
+
+          </div>
+          <div class="col-lg-4">
+            <h2><i class="fa fa-flag"></i> Tribute to Great Americans</h2>
+            <p>
+              A place to honor American Heros.
+            </p>
+          </div>
 
 
 
         </div>
       </div>
     </div>
-  
+
 </template>

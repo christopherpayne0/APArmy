@@ -1,9 +1,9 @@
 Meteor.startup(function() {
   if(Meteor.isClient) {
     SEO.config({
-      title: 'CasualDay',
+      title: 'American Patriot Army',
       meta: {
-        'description': 'Project Management Made Easy'
+        'description': 'Real news and information for Patriots.'
       },
       og: {
         'image': Meteor.absoluteUrl('share-image.png')

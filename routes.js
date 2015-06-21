@@ -100,6 +100,46 @@ Router.map(function() {
       // });
     }
   });
+  this.route('newblog', {
+    path: '/newblog',
+    layoutTemplate:'mainLayout',
+    loginRequired: 'entrySignIn',
+    waitOn:function(){
+      Meteor.subscribe('customers');
+      Meteor.subscribe('chats');
+      return Meteor.subscribe('projects',Meteor.userId());
+    },
+    data:{
+      'projects':function(){
+        return Projects.find();
+      }
+    },
+    onAfterAction: function() {
+      // SEO.set({
+      //   title: 'Dashboard | ' + SEO.settings.title
+      // });
+    }
+  });
+  this.route('blog', {
+    path: '/blog',
+    layoutTemplate:'mainLayout',
+    loginRequired: 'entrySignIn',
+    waitOn:function(){
+      Meteor.subscribe('customers');
+      Meteor.subscribe('chats');
+      return Meteor.subscribe('projects',Meteor.userId());
+    },
+    data:{
+      'projects':function(){
+        return Projects.find();
+      }
+    },
+    onAfterAction: function() {
+      // SEO.set({
+      //   title: 'Dashboard | ' + SEO.settings.title
+      // });
+    }
+  });
   this.route('projectView',{
     path:'/projects/:id',
     layoutTemplate:'mainLayout',

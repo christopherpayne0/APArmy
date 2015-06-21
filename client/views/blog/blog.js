@@ -1,0 +1,3 @@
+Template.blogdisplay.rendered = function() {
+
+};
