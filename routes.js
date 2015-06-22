@@ -98,26 +98,7 @@ Router.map(function() {
       return Meteor.subscribe('directory');
     }
   });
-  this.route('dashboard', {
-    path: '/dashboard',
-    layoutTemplate:'mainLayout',
-    loginRequired: 'entrySignIn',
-    waitOn:function(){
-      Meteor.subscribe('customers');
-      Meteor.subscribe('chats');
-      return Meteor.subscribe('projects',Meteor.userId());
-    },
-    data:{
-      'projects':function(){
-        return Projects.find();
-      }
-    },
-    onAfterAction: function() {
-      // SEO.set({
-      //   title: 'Dashboard | ' + SEO.settings.title
-      // });
-    }
-  });
+
   this.route('newblog', {
     path: '/newblog',
     layoutTemplate:'mainLayout',
