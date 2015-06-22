@@ -1,7 +1,7 @@
-Template.dashboard.rendered = function() {
+Template.newblog.rendered = function() {
 
 };
-Template.dashboard.events({
+Template.newblog.events({
   'keyup input[type=text]':function(event,tmpl){
     if(event.which === 27 || event.which === 13){
       event.preventDefault();
@@ -20,7 +20,7 @@ Template.dashboard.events({
     return Session.set('projectToDelete',null);
   }
 });
-Template.dashboard.helpers({
+Template.newblog.helpers({
   projectToDelete:function(){
     return Session.get('projectToDelete');
   }
