@@ -5,17 +5,34 @@
   <div class="newblog">
     <ol class="breadcrumb">
       <li><a href="{{pathFor 'home'}}"><i class="fa fa-home"></i> Home</a></li>
-      <li class="active"><i class="fa fa-pencil-square-o"></i> Blog</li>
+      <li class="active"><i class="fa fa-pencil-square-o"></i> New Blog</li>
     </ol>
     <div class="page-header">
-      <!-- We added css to make this input look cloaked -->
-      <p>
+      <form action="default">
+        <fieldset>
+          <legend>New Blog:</legend>
+          Blog Title:<br>
+          <input class="biginput" type="text" name="projectNameEnter" id="projectNameEnter" placeholder="New Blog" value="">
+          <br>
+          Blog Content:<br>
+          <textarea rows="auto" cols="100" class="contentinput" type="text" name="blogContent" id="blogContent" placeholder="Blog Content" value=""></textarea>
+          <br><br>
+          Blog Tags:<br>
+          <input type="radio" name="tag" value="Legislature">Legislature<br>
+          <input type="radio" name="tag" value="Enviroment">Enviroment<br>
+          <input type="radio" name="tag" value="Business">Business<br>
+          <input type="radio" name="tag" value="Governor">Governor<br>
+          
+          <input type="submit" value="Submit">
+        </fieldset>
+      </form>
+      <!-- <p>
         <input class="biginput" type="text" name="projectNameEnter" id="projectNameEnter" placeholder="New Blog" value="">
       </p>
       <p>
         <textarea rows="auto" cols="100" class="contentinput" type="text" name="blogContent" id="blogContent" placeholder="Blog Content" value=""></textarea>
-        <button type="button" id="submit">Submit</button>
-      </p>
+        <button type="button" onclick="submit" id="submit">Submit</button>
+      </p> -->
     </div>
     <h5> Blogs listed by date</h5>
     <div>

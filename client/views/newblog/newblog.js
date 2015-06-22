@@ -11,6 +11,7 @@ Template.newblog.events({
       Meteor.call('saveProject',project);
     }
   },
+
   'click .deleteConfirmation':function(evt,tmpl){
     evt.preventDefault();
     evt.stopPropagation();
@@ -20,6 +21,7 @@ Template.newblog.events({
     return Session.set('projectToDelete',null);
   }
 });
+
 Template.newblog.helpers({
   projectToDelete:function(){
     return Session.get('projectToDelete');
