@@ -1,0 +1,43 @@
+<template name="home">
+  <div class="home">
+    <div class="container">
+      <div class="jumbotron">
+          <!--The site title is pulled from our seo.js-->
+        <h1>{{ siteTitle }}</h1>
+        <p class="lead">Real news and information for Patriots.</p>
+        <p>
+          <a href="{{pathFor 'blog'}}" class="btn btn-lg btn-success" id="blogbtn">Blog Page</a>
+        </p>
+      </div>
+      <div class="row">
+          <div class="col-lg-4">
+              <!--The fa-users class indicates a font awesome icon-->
+            <h2><i class="fa fa-legal"></i> Petitions</h2>
+            <p>
+                This is where you can find, create and sign petitions.
+            </p>
+          </div>
+          <div class="col-lg-4">
+            <h2><i class="fa fa-university"></i> CO Government Structure</h2>
+            <p>
+              Learn about the structure of the state government and which entities govern what.
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-4">
+            <h2><i class="fa fa-ban"></i> Wailing Wall of Shame</h2>
+            <p>
+              Wrongdoing by government officials
+            </p>
+          </div>
+          <div class="col-lg-4">
+            <h2><i class="fa fa-flag"></i> Tribute to Great Americans</h2>
+            <p>
+              A place to honor American Heros.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+</template>

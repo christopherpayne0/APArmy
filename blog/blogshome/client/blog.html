@@ -1,0 +1,38 @@
+<template name="blog">
+  <div class="blog">
+    <ol class="breadcrumb">
+      <li><a href="{{pathFor 'home'}}"><i class="fa fa-home"></i> Home</a></li>
+      <li class="active"><i class="fa fa-pencil-square-o"></i> Blog Page</li>
+    </ol>
+    <h1> Blogs listed by date</h1>
+    <div>
+      {{#each projects}}
+        {{>project2}}
+      {{else}}
+          <h4>No Blogs Found!</h4>
+      {{/each}}
+    </div>
+  </div>
+</template>
+
+<template name="project2">
+  <div class="col-md-3 blogDisplayExpandIndividualBlogs">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <p>
+            <h5>
+              <h3>{{name}}</h3>
+              <br/>  Entered on {{formatdate dateentered}}
+            </h5>
+          </p>
+        </h3>
+      </div>
+      <div class="panel-body">
+      <p>
+        {{content}}
+      </p>
+      </div>
+    </div>
+  </div>
+</template>

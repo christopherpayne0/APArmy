@@ -1,28 +1,28 @@
-
 Router.configure({
   layoutTemplate: 'nosidebar',
   loadingTemplate: 'loading',
-
-  yieldTemplates: {
-    header: {
+  yieldTemplates:{
+    header:{
       to: 'header'
     },
-    footer: {
+    footer:{
       to: 'footer'
     }
   },
-
-  onAfterAction: function() {
+  onAfterAction:function(){
     $(document).scrollTop(0);
   }
 });
+
 Router.onBeforeAction('loading');
-Router.map(function() {
+
+Router.map(function(){
   this.route('home', {
     path: '/',
     layoutTemplate:'nosidebar'
   });
-  this.route('req', {
+  
+  this.route('req',{
     path: '/req',
     layoutTemplate:'nosidebar',
     loginRequired: 'entrySignIn',
@@ -35,7 +35,7 @@ Router.map(function() {
     }
   }
   });
-
+  
   this.route('requestView',{
     path:'/requests/:id',
     layoutTemplate:'nosidebar',
@@ -62,7 +62,7 @@ Router.map(function() {
     }
   });
 
-  this.route('customers', {
+  this.route('customers',{
     path: '/customers',
     layoutTemplate:'mainLayout',
     loginRequired: 'entrySignIn',
@@ -73,24 +73,33 @@ Router.map(function() {
       'customers':function(){
         return Customers.find({});
       }
-      },
-
-    onAfterAction: function() {
+    },
+    onAfterAction:function(){
       SEO.set({
         title: 'Customers | ' + SEO.settings.title
       });
     }
   });
-  this.route('archives', {
+  
+  this.route('members',{
+    path: '/members',
+    layoutTemplate:'mainLayout',
+    loginRequired: 'entrySignIn',
+    waitOn:function(){
+      return Meteor.subscribe('directory');
+    }
+  });
+  
+  this.route('archives',{
     layoutTemplate: 'mainLayout',
     path: '/archives',
     loginRequired: 'entrySignIn',
-    waitOn: function () {
+    waitOn:function(){
       Meteor.subscribe('archives', Session.get('active_project'));
-
     }
   });
-  this.route('roles', {
+  
+  this.route('roles',{
     path: '/roles',
     layoutTemplate:'mainLayout',
     loginRequired: 'entrySignIn',
@@ -99,8 +108,8 @@ Router.map(function() {
     }
   });
 
-  this.route('newblog', {
-    path: '/newblog',
+  this.route('dashboard', {
+    path: '/dashboard',
     layoutTemplate:'mainLayout',
     loginRequired: 'entrySignIn',
     waitOn:function(){
@@ -119,6 +128,28 @@ Router.map(function() {
       // });
     }
   });
+  
+  this.route('newblog', {
+    path: '/newblog',
+    layoutTemplate:'mainLayout',
+    loginRequired: 'entrySignIn',
+    waitOn:function(){
+      Meteor.subscribe('customers');
+      Meteor.subscribe('chats');
+      return Meteor.subscribe('projects',Meteor.userId());
+    },
+    data:{
+      'projects':function(){
+        return Projects.find();
+      }
+    },
+    onAfterAction: function() {
+      SEO.set({
+        title: 'New Blog'
+      });
+    }
+  });
+  
   this.route('blog', {
     path: '/blog',
     layoutTemplate:'mainLayout',
@@ -139,6 +170,7 @@ Router.map(function() {
       // });
     }
   });
+  
   this.route('projectView',{
     path:'/projects/:id',
     layoutTemplate:'mainLayout',
@@ -164,6 +196,7 @@ Router.map(function() {
       })
     }
   });
+  
   this.route('profile', {
     path: '/profile',
     layoutTemplate:'nosidebar',
@@ -184,6 +217,7 @@ Router.map(function() {
       return templateData;
     }
   });
+  
   this.route('notFound', {
     path: '*',
     where: 'server',

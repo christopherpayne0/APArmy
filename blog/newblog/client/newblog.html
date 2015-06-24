@@ -1,0 +1,163 @@
+<template name="newblog">
+  {{#if projectToDelete}}
+    {{>delconfirm}}
+  {{/if}}
+  <div class="newblog">
+    <ol class="breadcrumb">
+      <li><a href="{{pathFor 'home'}}"><i class="fa fa-home"></i> Home</a></li>
+      <li class="active"><i class="fa fa-pencil-square-o"></i> New Blog</li>
+    </ol>
+    <div class="page-header">
+      <form action="#" id='newBlogSubmitForm'>
+        <fieldset>
+          <legend>New Blog:</legend>
+          Blog Title:<br>
+          <input class="biginput" type="text" name="projectNameEnter" id="projectNameEnter" placeholder="New Blog" value="">
+          <br>
+          Blog Content:<br>
+          <textarea rows="auto" cols="100" class="contentinput" type="text" name="blogContent" id="blogContent" placeholder="Blog Content" value=""></textarea>
+          <br><br>
+          Blog Tags:<br>
+          <input type="radio" name="tag" value="Legislature">Legislature<br>
+          <input type="radio" name="tag" value="Environment">Environment<br>
+          <input type="radio" name="tag" value="Business">Business<br>
+          <input type="radio" name="tag" value="Governor">Governor<br>
+
+          <input type="submit" value="Submit">
+        </fieldset>
+      </form>
+    </div>
+    <h5> Blogs listed by date</h5>
+    <div>
+      {{#each projects}}
+        {{>project}}
+      {{else}}
+          <h4>No Blogs Found!</h4>
+      {{/each}}
+    </div>
+  </div>
+</template>
+
+<template name="project">
+  <div class="col-md-3">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">
+          <p class="pull-right">
+            <i class="fa fa-trash deleteConfirmation"></i>
+          </p>
+          <p>
+            <h5>
+              <h3>{{name}}</h3>
+              <br/>  Entered on {{formatdate dateentered}}
+            </h5>
+          </p>
+        </h3>
+      </div>
+      <div class="panel-body">
+      <p>
+        {{content}}
+      </p>
+      <p>
+        <strong>{{tag}}</strong>
+      </p>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="delconfirm">
+  <div class="modal fade in show" id="delConfirmDlg" tabindex="-1" role="dialog" aria-labelledby="test" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close cancelDelete" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="removeproject">Remove Project</h4>
+        </div>
+        <div class="modal-body">
+          <h4>This will remove this project, and any linked records.</h4>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default cancelDelete" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary deleteConfirmed">Ok</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="projectView">
+  <div id="example" class="panel">
+    <ol class="breadcrumb">
+      <li><a href="/"><i class="fa fa-home"></i> Home</a></li>
+      <li><a href="/dashboard"><i class="fa fa-cubes"></i> Projects</a></li>
+      <li class="active">{{name}}</li>
+    </ol>
+    {{#if editing_calevent}}
+      {{>caltask}}
+    {{/if}}
+    {{#if adding_conversation}}
+      {{>conversationDlg}}
+    {{/if}}
+    {{#if adding_todo}}
+      {{>todoDlg}}
+    {{/if}}
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        {{>projectPanelHeading}}
+      </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-md-3">
+            {{>activity}}
+            {{>uploads}}
+          </div>
+          <div class="col-md-9">
+            {{>calendar}}
+            {{>conversations}}
+            <div class="col-md-8">
+              {{>todos}}
+            </div>
+            <div class="col-md-4">
+              {{>invited}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="projectPanelHeading">
+  <div class="panel-heading">
+    <h2 class="panel-title">
+      <span id="projectName">
+        {{#if editing_projectname}}
+        <input style="width:150px;margin-left:20px;font-size:10pt;" type="text"
+        class="noborder form-control projectName" id="projectName"
+        placeholder="Name" value="{{name}}">
+        {{else}}
+        <span><a class="projectNameEdit" href="#">{{name}}</a></span>
+        {{/if}}
+        for
+      </span>
+      {{#if editing_projectmember}}
+      <select style="width:190px" class="form-control member input" name="member" id="member">
+        <option value="">Select A Member</option>
+        {{#each members}}
+        <option selected="{{isSelected ..}}" value="{{_id}}">{{name}}</option>
+        {{/each}}
+      </select>
+      {{else}}
+      <span><a class="projectMemberEdit" href="#">{{#if member.name}}{{member.name}}{{else}}Select a Member{{/if}}</a></span>
+      {{/if}}
+      {{#if editing_datedue}}
+      <input style="width:150px;margin-left:20px;font-size:10pt;" type="text"
+      class="noborder form-control dateDue" id="dateDue"
+      placeholder="Date Due" value="{{datedue}}">
+      {{else}}
+      <span> Due on <a class="projectDateDue" href="#">{{formatdate datedue}}</a></span>
+      {{/if}}
+    </h2>
+  </div>
+</template>
