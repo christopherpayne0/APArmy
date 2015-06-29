@@ -3,10 +3,10 @@
     {{>delconfirm}}
   {{/if}}
   <div class="newblog">
-    <ol class="breadcrumb">
+    <!-- <ol class="breadcrumb">
       <li><a href="{{pathFor 'home'}}"><i class="fa fa-home"></i> Home</a></li>
       <li class="active"><i class="fa fa-pencil-square-o"></i> New Blog</li>
-    </ol>
+    </ol> -->
     <div class="page-header">
       <form action="#" id='newBlogSubmitForm'>
         <fieldset>
@@ -30,7 +30,7 @@
     <h5> Blogs listed by date</h5>
     <div>
       {{#each projects}}
-        {{>project}}
+        {{>newblogexistingblog}}
       {{else}}
           <h4>No Blogs Found!</h4>
       {{/each}}
@@ -38,7 +38,7 @@
   </div>
 </template>
 
-<template name="project">
+<template name="newblogexistingblog">
   <div class="col-md-3">
     <div class="panel panel-default">
       <div class="panel-heading">

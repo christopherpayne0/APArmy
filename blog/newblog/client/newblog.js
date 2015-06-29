@@ -38,7 +38,7 @@ Template.newblog.helpers({
 });
 
 // 2ND TEMPLATE
-Template.project.helpers({
+Template.newblogexistingblog.helpers({
   member: function (member) {
     var cust = Members.findOne({_id: this.member});
     return cust;

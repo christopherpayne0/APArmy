@@ -14,14 +14,58 @@ Router.configure({
   }
 });
 
-Router.onBeforeAction('loading');
+if (Meteor.isClient) {
+  // Show the loading screen on desktop
+  Router.onBeforeAction('loading');
+}
 
 Router.map(function(){
   this.route('home', {
     path: '/',
     layoutTemplate:'nosidebar'
   });
-  
+
+  this.route('blogs', {
+    path: '/blogs',
+    layoutTemplate:'mainLayout',
+    waitOn:function(){
+      // Meteor.subscribe('customers');
+      // Meteor.subscribe('chats');
+      return Meteor.subscribe('projects',Meteor.userId());
+    },
+    data:{
+      'projects':function(){
+        return Projects.find();
+      }
+    },
+    onAfterAction: function() {
+      // SEO.set({
+      //   title: 'Dashboard | ' + SEO.settings.title
+      // });
+    }
+  });
+
+  this.route('newblog', {
+    path: '/newblog',
+    layoutTemplate:'mainLayout',
+    loginRequired: 'entrySignIn',
+    waitOn:function(){
+      Meteor.subscribe('customers');
+      Meteor.subscribe('chats');
+      return Meteor.subscribe('projects',Meteor.userId());
+    },
+    data:{
+      'projects':function(){
+        return Projects.find();
+      }
+    },
+    onAfterAction: function() {
+      SEO.set({
+        title: 'New Blog'
+      });
+    }
+  });
+
   this.route('req',{
     path: '/req',
     layoutTemplate:'nosidebar',
@@ -30,12 +74,12 @@ Router.map(function(){
       return Meteor.subscribe('requests',Meteor.userId());
     },
     data:{
-    'requests': function(){
-      return Requests.find();
+      'requests': function(){
+        return Requests.find();
+      }
     }
-  }
   });
-  
+
   this.route('requestView',{
     path:'/requests/:id',
     layoutTemplate:'nosidebar',
@@ -80,7 +124,7 @@ Router.map(function(){
       });
     }
   });
-  
+
   this.route('members',{
     path: '/members',
     layoutTemplate:'mainLayout',
@@ -89,7 +133,7 @@ Router.map(function(){
       return Meteor.subscribe('directory');
     }
   });
-  
+
   this.route('archives',{
     layoutTemplate: 'mainLayout',
     path: '/archives',
@@ -98,7 +142,7 @@ Router.map(function(){
       Meteor.subscribe('archives', Session.get('active_project'));
     }
   });
-  
+
   this.route('roles',{
     path: '/roles',
     layoutTemplate:'mainLayout',
@@ -128,49 +172,7 @@ Router.map(function(){
       // });
     }
   });
-  
-  this.route('newblog', {
-    path: '/newblog',
-    layoutTemplate:'mainLayout',
-    loginRequired: 'entrySignIn',
-    waitOn:function(){
-      Meteor.subscribe('customers');
-      Meteor.subscribe('chats');
-      return Meteor.subscribe('projects',Meteor.userId());
-    },
-    data:{
-      'projects':function(){
-        return Projects.find();
-      }
-    },
-    onAfterAction: function() {
-      SEO.set({
-        title: 'New Blog'
-      });
-    }
-  });
-  
-  this.route('blog', {
-    path: '/blog',
-    layoutTemplate:'mainLayout',
-    loginRequired: 'entrySignIn',
-    waitOn:function(){
-      Meteor.subscribe('customers');
-      Meteor.subscribe('chats');
-      return Meteor.subscribe('projects',Meteor.userId());
-    },
-    data:{
-      'projects':function(){
-        return Projects.find();
-      }
-    },
-    onAfterAction: function() {
-      // SEO.set({
-      //   title: 'Dashboard | ' + SEO.settings.title
-      // });
-    }
-  });
-  
+
   this.route('projectView',{
     path:'/projects/:id',
     layoutTemplate:'mainLayout',
@@ -196,7 +198,7 @@ Router.map(function(){
       })
     }
   });
-  
+
   this.route('profile', {
     path: '/profile',
     layoutTemplate:'nosidebar',
@@ -217,7 +219,7 @@ Router.map(function(){
       return templateData;
     }
   });
-  
+
   this.route('notFound', {
     path: '*',
     where: 'server',

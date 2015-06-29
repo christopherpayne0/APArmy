@@ -1,3 +1,7 @@
+$(document).on("click",".causeSignOut",function(){
+  Meteor.logout();
+});
+
 // RETURNS: TITLE OF SITE
 Template.registerHelper('siteTitle', function(string) {
   return SEO.settings.title;

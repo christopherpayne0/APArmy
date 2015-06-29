@@ -4,7 +4,7 @@
       <h2>Edit Profile</h2>
       <form>
         {{#each profileFields}}
-      {{> _profileField}}
+          {{> _profileField}}
         {{/each}}
         {{submit_button 'Update Profile'}}
       </form>
@@ -16,7 +16,7 @@
   {{#if isTextField}}
   <div class="form_group">
     {{#with profile}}
-    {{text_field ../name type=../type required=../required hint=../hint placeholder=../placeholder afterAddon=../afterAddon class="profileField"}}
+      {{text_field ../name type=../type required=../required hint=../hint placeholder=../placeholder afterAddon=../afterAddon class="profileField"}}
     {{/with}}
   </div>
   {{/if}}
@@ -24,7 +24,7 @@
   {{#if isTextArea}}
   <div class="form_group">
     {{#with profile}}
-    {{text_area ../name type=../type required=../required hint=../hint placeholder=../placeholder afterAddon=../afterAddon class="profileField"}}
+      {{text_area ../name type=../type required=../required hint=../hint placeholder=../placeholder afterAddon=../afterAddon class="profileField"}}
     {{/with}}
   </div>
   {{/if}}
@@ -32,7 +32,7 @@
   {{#if isCheckbox}}
   <div class="checkbox">
     {{#with profile}}
-    {{check_box name label=label required=required}}
+      {{check_box name label=label required=required}}
     {{/with}}
   </div>
   {{/if}}

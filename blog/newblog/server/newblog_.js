@@ -1,5 +1,5 @@
 Meteor.publish('projects',function(userId){
-  return Projects.find({$or:[{userId:this.userId}]});
+  return Projects.find();
 });
 
 Meteor.methods({

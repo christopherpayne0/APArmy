@@ -19,10 +19,10 @@ Meteor.startup(function() {
     //   Roles.addUsersToRoles(id, userData.roles);
     // });
     // }
-  Meteor.Mailgun.config({
-    username: 'tarrellrodrigues@gmail.com',
-    password: ''
-  });
+  // Meteor.Mailgun.config({
+  //   username: 'tarrellrodrigues@gmail.com',
+  //   password: ''
+  // });
   // if(Members.find().count() < 1){
   //   return Members.insert({name:'House Account'});
   // }
