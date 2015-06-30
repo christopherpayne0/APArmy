@@ -1,11 +1,22 @@
 <template name="blogs">
-  <div>
-    {{#each projects}}
-      {{>blog}}
-    {{else}}
-      <h4>No Blogs Found!</h4>
-    {{/each}}
-  </div>
+    <div id="items">
+      {{#each sortedSortableItems}}
+        {{>sortableItem}}
+      {{else}}
+        <h4>No Blogs Found!</h4>
+      {{/each}}
+    </div>
+    <div>
+      {{#each projects}}
+        {{>blog}}
+      {{else}}
+        <h4>No Blogs Found!</h4>
+      {{/each}}
+    </div>
+</template>
+
+<template name="sortableItem">
+  <div class="sortableItem">{{name}}</div>
 </template>
 
 <template name="blog">

@@ -2,11 +2,11 @@
   {{#if currentUser}}
   <div class="col-md-2 hidden-xs hidden-sm">
     <ul class="nav nav-sidebar">
-      <li><a href="{{pathFor 'newblog'}}"><i class="fa fa-shield"></i> New Blog</a></li>
-      <li><a href="{{pathFor 'blogs'}}"><i class="fa fa-shield"></i> Blog Page</a></li>
-      <li><a href="{{pathFor 'members'}}"><i class="fa fa-university"></i> Members</a></li>
-      <li><a href="{{pathFor 'archives'}}"><i class="fa fa-database"></i> Archives</a></li>
-      <li><a href="{{pathFor 'roles'}}"><i class="fa fa-users"></i> Roles</a></li>
+      <li class="{{ isActivePath regex='/newblog' }}"><a href="{{pathFor 'newblog'}}"><i class="fa fa-shield"></i> New Blog</a></li>
+      <li class="{{ isActivePath regex='/blogs' }}"><a href="{{pathFor 'blogs'}}"><i class="fa fa-shield"></i> Blog Page</a></li>
+      <li class="{{ isActivePath regex='/members' }}"><a href="{{pathFor 'members'}}"><i class="fa fa-university"></i> Members</a></li>
+      <li class="{{ isActivePath regex='/archives' }}"><a href="{{pathFor 'archives'}}"><i class="fa fa-database"></i> Archives</a></li>
+      <li class="{{ isActivePath regex='/roles' }}"><a href="{{pathFor 'roles'}}"><i class="fa fa-users"></i> Roles</a></li>
     </ul>
   </div>
   {{/if}}

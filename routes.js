@@ -47,7 +47,7 @@ Router.map(function(){
 
   this.route('newblog', {
     path: '/newblog',
-    layoutTemplate:'mainLayout',
+    layoutTemplate:'newBlogTwoSidebarsLayout',
     loginRequired: 'entrySignIn',
     waitOn:function(){
       Meteor.subscribe('customers');
