@@ -6,6 +6,14 @@ Template.newblog.events({
     var index = $(event.target).parent().index() + 1;
     $(event.target).parent().parent().children().eq(index).remove();
     $(event.target).parent().remove();
+    $("#newBlogSubmitElementsContainer").sortable({
+      start:function(event,ui){
+        $(ui.item).parent().children("li").children(".accordion-header").css("opacity","1");
+      },
+      stop:function(event,ui){
+        $(ui.item).parent().children("li").children(".accordion-header").css("opacity","0");
+      }
+    });
   },
   'mouseenter #newBlogSubmitElementsContainer h3':function(event){
     var index = $(event.target).index() + 1;
@@ -22,6 +30,7 @@ Template.newblog.events({
   },
   'submit #newBlogSubmitForm':function(event,tmpl){
     event.preventDefault();
+    window.alert("yup");
     return;
     var project = {};
     project.name = tmpl.find('#projectNameEnter').value;
@@ -45,12 +54,6 @@ Template.newblog.events({
   }
 });
 Template.newblog.rendered = function() {
-  this.$('#newBlogSubmitElementsContainer').accordion({
-      heightStyle: "content",
-      collapsible: true
-    });
-    $('#st-accordion > ul > li').addClass( 'st-open' );
-    $('#st-accordion > ul > li div.st-content').show();
 }
 Template.newblog.helpers({
   projectToDelete:function(){
@@ -210,26 +213,96 @@ Template.blogs.rendered = function() {
 // 6TH TEMPLATE
 Template.newBlogRightSidebar.rendered = function() {
   this.$('#newBlogRightSidebarMainAccordion').accordion({
-      heightStyle: "content",
-      event: "hoverintent",
-      collapsible: true
-    });
+    heightStyle: "content"
+  });
 }
 
 // 7TH TEMPLATE
+Template.newBlogTwoSidebarsLayout.rendered = function() {
+  ({
+    start:function(event,ui){
+      $(ui.item).parent().children("li").children(".accordion-header").css("opacity","1");
+    },
+    stop:function(event,ui){
+      $(ui.item).parent().children("li").children(".accordion-header").css("opacity","0");
+    }
+  });
+  $('.newBlogRightSidebarMainAccordionContentItem').draggable({
+    connectToSortable: "#newBlogSubmitElementsContainer",
+    revert: "invalid",
+    helper: "clone",
+    start:function(){
+        $("#newBlogSubmitElementsContainer >li >.accordion-header").css("opacity","1");
+    },
+    stop:function(){
+        $("#newBlogSubmitElementsContainer >li >.accordion-header").css("opacity","0");
+    }
+  });
+}
+Template.newBlogTwoSidebarsLayout.helpers({
+});
 Template.newBlogTwoSidebarsLayout.events({
-  'click .newBlogRightSidebarMainAccordionContentTextArea': function (event) {
-    var a = $(event.target).parent().html();
-    $("#newBlogSubmitElementsContainer").append("<h3>Text Area <span class='newBlogSubmitElementsContainerDeleteElement'>X</span></h3>");
-    $("#newBlogSubmitElementsContainer").append(a);
-    $("#newBlogSubmitElementsContainer").accordion('destroy').accordion({
-      heightStyle: "content",
-      collapsible: true
+  'click #newBlogSubmitElementsContainer >li >.accordion-header': function (event) {
+    var panel = $(event.target).parent().children("div");
+    var isOpen = panel.is(':visible');
+    // open or close as necessary
+    panel[isOpen? 'slideUp': 'slideDown']()
+        // trigger the correct custom event
+        .trigger(isOpen? 'hide': 'show');
+
+    if(isOpen){
+      $(event.target).css("opacity","1");
+      $(event.target).children(".ui-icon").removeClass("ui-icon-triangle-1-s").addClass("ui-icon-triangle-1-e");
+    }else{
+      $(event.target).css("opacity","0");
+      $(event.target).children(".ui-icon").removeClass("ui-icon-triangle-1-e").addClass("ui-icon-triangle-1-s");
+    }
+
+    $("#newBlogSubmitElementsContainer").sortable({
+      start:function(event,ui){
+        $(ui.item).parent().children("li").children(".accordion-header").css("opacity","1");
+      },
+      stop:function(event,ui){
+        $(ui.item).parent().children("li").children(".accordion-header").css("opacity","0");
+      }
     });
-    $('#st-accordion > ul > li').addClass( 'st-open' );
-    $('#st-accordion > ul > li div.st-content').show();
+    // stop the link from causing a pagescroll
+    return false;
+  },
+  'click #newBlogSubmitElementsContainer >li >h3 >.ui-accordion-header-icon': function (event) {
+    var panel = $(event.target).parent().parent().children("div");
+    var isOpen = panel.is(':visible');
+    // open or close as necessary
+    panel[isOpen? 'slideUp': 'slideDown']()
+        // trigger the correct custom event
+        .trigger(isOpen? 'hide': 'show');
+
+    if(isOpen){
+      $(event.target).parent().parent().children("h3").css("opacity","1");
+      $(event.target).parent().children(".ui-icon").removeClass("ui-icon-triangle-1-s").addClass("ui-icon-triangle-1-e");
+    }else{
+      $(event.target).parent().parent().children("h3").css("opacity","0");
+      $(event.target).parent().children(".ui-icon").removeClass("ui-icon-triangle-1-e").addClass("ui-icon-triangle-1-s");
+    }
+
+    $("#newBlogSubmitElementsContainer").sortable({
+      start:function(event,ui){
+        $(ui.item).parent().children("li").children(".accordion-header").css("opacity","1");
+      },
+      stop:function(event,ui){
+        $(ui.item).parent().children("li").children(".accordion-header").css("opacity","0");
+      }
+    });
+    // stop the link from causing a pagescroll
+    return false;
   }
 });
+
+// LATEST TEMPLATE
+Template.newBlogRightSidebarMainAccordionContentInnards.helpers({
+});
+
+
 /*
  * hoverIntent | Copyright 2011 Brian Cherne
  * http://cherne.net/brian/resources/jquery.hoverIntent.html

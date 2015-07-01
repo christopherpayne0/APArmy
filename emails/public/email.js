@@ -4,8 +4,8 @@ Meteor.startup(function() {
   // - NOT SECURE BECAUSE THIS USER DOES NOT GET DELETED LATER
     //   if (Meteor.users.find().fetch().length === 0) {
     //     var users = [
-    //   {name:"Customer Service",email:"cs@home.com",roles:['view-projects','view-Members']},
-    // {name:"Admin User",email:"geomck1967@gmail.com",roles:['admin']}
+    //   {name:"Customer Service",email:"",roles:['view-projects','view-Members']},
+    // {name:"Admin User",email:"",roles:['admin']}
     // ];
     //
     // _.each(users, function (userData) {
@@ -20,7 +20,7 @@ Meteor.startup(function() {
     // });
     // }
   // Meteor.Mailgun.config({
-  //   username: 'tarrellrodrigues@gmail.com',
+  //   username: '',
   //   password: ''
   // });
   // if(Members.find().count() < 1){
