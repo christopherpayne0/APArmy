@@ -12,7 +12,7 @@ Template.newblog.events({
     var project = {};
     project.name = tmpl.find('#projectNameEnter').value;
     project.content = tmpl.find('#blogContent').value;
-	var tag = tmpl.find('input:radio[name=tag]:checked');
+	var tag = tmpl.find('input:checkbox[name=tag]:checked');
 	var tagValue = "";
 	if($(tag).size()>0)
 	{

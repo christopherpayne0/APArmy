@@ -35,3 +35,16 @@ cfs:s3
 cfs:dropbox
 rajit:bootstrap3-datepicker
 houston:admin
+accounts-facebook
+accounts-twitter
+accounts-google
+accounts-github
+accounts-meetup
+accounts-weibo
+meteorhacks:kadira
+sacha:spin
+meteorhacks:npm
+browser-policy
+
+
+npm-container
